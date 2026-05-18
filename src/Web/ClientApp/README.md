@@ -25,3 +25,26 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+# Feature — Due Dates & Filtering
+
+## Changes Appiled
+
+### Backend Changes
+
+- Added `DateOnly? DueDate` to the `TodoItem` domain entity
+- Added EF Core migration for creating the nullable `DueDate` column in the database
+- Updated the `CreateTodoItemCommand` and `UpdateTodoItemDetailCommand` to accept `DueDate`
+- Added `DueDate` validation, should be a future date if provided
+- Exposed `DueDate` in `TodoItemDto` via AutoMapper
+
+### Frontend Changes
+- Due date has been displayed next to each todo item in the title
+- Overdue items highlighted in red with "Overdue" label
+- All,Active,Completed filter buttons on the todo list
+- Due date date picker in the Item Details dialog
+
+### Tests
+- `ShouldCreateTodoItemWithDueDate` verifies due date is persisted on create
+- `ShouldUpdateTodoItemDueDate` verifies due date is updated correctly
